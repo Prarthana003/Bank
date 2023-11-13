@@ -1,0 +1,28 @@
+.Box1{
+    display: flex;
+    align-items: center;
+}
+
+.Box2{
+    display: flex;
+    align-items: center;
+    border-style: solid;
+    border-radius: 20px;
+    border-color: black;
+    margin: 4.5%;
+    padding: 5%;
+}
+
+.Box3{
+    align-items: center;
+    
+}
+
+.Box4{
+    align-items: center;
+    border-style: solid;
+    border-radius: 20px;
+    border-color: black;
+    margin: 2%;
+    padding: 1%;
+}

@@ -1,0 +1,20 @@
+.header{
+    display: flex;
+    align-items: center;
+    padding: 2%;
+    background-color: rgb(38, 38, 117);
+    
+}
+
+.t1{
+    color: white;
+}
+
+a{
+    margin-left: 10%;
+}
+a:hover{
+    text-decoration:underline;
+    text-decoration-color: white;
+}
+

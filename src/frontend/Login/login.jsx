@@ -65,7 +65,7 @@ const LoginComponent = () => {
           }
           else
           {
-          navigate('/next', { state: { data: data } }); // Pass data to the next route
+          navigate('/mainPage', { state: { data: data } }); // Pass data to the next route
           console.log('Login successful!');
           }
         } else {
@@ -115,4 +115,3 @@ const LoginComponent = () => {
 };
 
 export default LoginComponent;
-

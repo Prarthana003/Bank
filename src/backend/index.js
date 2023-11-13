@@ -1,11 +1,30 @@
 const mysql= require("mysql2")
 const express=require("express")
+const beneficiaryRouter = require('./beneficiary.js');
+const transactionRouter = require('./transaction.js')
+const addBenRouter=  require('./addBeneficiary.js')
+const updateTransactionRouter = require('./updateTransaction.js')
+const urLoansRouter = require('./yourLoans.js')
+const urtransactionRouter = require('./urTransactions.js')
+const loanPayRouter = require('./loanPayment.js')
+const loanUpdateRouter = require('./loanUpdateAccount.js')
+const createFdRouter = require('./create_fd.js')
+const UrFdRouter = require('./UrFd.js')
+const dcOtpRouter = require('./dcOtp.js')
+const dcPhno = require('./getphno.js')
+const verify = require('./verifyOtp.js')
+
+
 
 const cors = require('cors');
 const app = express();
 app.use(express.json());
-// Enable All CORS Requests
 app.use(cors());
+
+
+var curr_account = require("./curr_account")
+
+
 
 const corsOptions = {
     origin: 'http://localhost:3000',
@@ -14,19 +33,30 @@ const corsOptions = {
   
   app.use(cors(corsOptions));
   
+  const db = require("./db");
 
-
-const db = mysql.createConnection({
-host: "localhost",
-user: "root",
-password: "root",
-database:"banking" 
-})
-// const cors = require('cors')
 
 const  PORT = 4000;
 // app.use(cors());
 app.use(express.json());
+
+app.use('/beneficiary', beneficiaryRouter);
+app.use('/transaction', transactionRouter);
+app.use('/addben',addBenRouter);
+app.use('/updateTransaction',updateTransactionRouter);
+app.use('/yourLoans',urLoansRouter);
+app.use('/urTransactions',urtransactionRouter);
+app.use('/loanPay',loanPayRouter)
+app.use('/updateLoan',loanUpdateRouter)
+app.use('/createFD',createFdRouter)
+app.use('/urFds',UrFdRouter)
+app.use('/phno',dcPhno)
+app.use('/otp',dcOtpRouter)
+app.use('/verifyOtp',verify)
+
+
+
+
 
 // Route to get all posts
 app.post("/",(req,res)=>{
@@ -43,18 +73,8 @@ app.post("/logged_in", (req,res)=>{
     pass=req.body.password;
 
     console.log(username,pass)
-    const q="select * from login where username=? and password=?";
-    //  const q='select * from login';
-    // db.query(
-    //     q,(err,result)=>{
-    //         if (err)
-    //         {   console.error('Error executing MySQL query:', err);
-    //             res.status(409).json({error:"Invalid credentials."})
-    //         }
-    //         console.log(result)
-    //         res.send(result)
-    //     }
-    // )
+    const q="select * from register_login where username=? and password_t=?";
+    
 
 out=[];
     // const q = 'SELECT * FROM login';
@@ -71,7 +91,9 @@ db.query(q,[username,pass], (err, result) => {
   }
   else
   res.send(result[0]); // Sending the query result as a JSON response
-});
+  curr_account.set(result[0]["AccountNo"]);
+  console.log(curr_account.value);
+  });
 
     // res.send({ message: 'Got' });
 });
@@ -84,9 +106,12 @@ app.get("/logged_in", (req,res)=>{
 });
 
 
+
+
 app.listen(PORT, ()=>{
     console.log(`Server is running on ${PORT}`)
 })
+
 
 
 module.exports = db;
