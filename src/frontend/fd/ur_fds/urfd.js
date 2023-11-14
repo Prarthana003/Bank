@@ -43,11 +43,11 @@ const UrFd = () => {
           {fdData.map((fd) => (
             <tr key={fd.fd_id}>
               <td>{fd.fd_id}</td>
-              <td>${fd.principal}</td>
-              <td>${fd.interest}</td>
+              <td>Rs{fd.principal}</td>
+              <td>{fd.interest}</td>
               <td>{fd.openingDate}</td>
               <td>{fd.closingDate}</td>
-              <td>${fd.amount}</td>
+              <td>Rs{fd.amount}</td>
             </tr>
           ))}
         </tbody>

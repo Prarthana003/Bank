@@ -1,0 +1,21 @@
+.success-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  .success-container h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .success-container p {
+    font-size: 1.5em;
+  }
+  

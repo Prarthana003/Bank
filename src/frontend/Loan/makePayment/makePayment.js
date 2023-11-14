@@ -24,7 +24,7 @@ const MakePayment=()=>{
 
     const handlePay = () => {
         console.log("in handle pay");
-        fetch("http://localhost:4000/loanPay/loanPayments", {
+        fetch("http://localhost:4000/loanPayment/loanPayments", {
           method: "POST",
           headers: {
             'Content-Type': 'application/json',
@@ -69,11 +69,11 @@ const update =()=>{
 }
 
     const handleSubmit=()=>{
-        console.log("in handle submit")
-        update()
-        console.log("finished update")
-        if(check ===1)
-            handlePay()
+        // console.log("in handle submit")
+        // update()
+        // console.log("finished update")
+        // if(check ===1)
+        handlePay()
 
     }
     

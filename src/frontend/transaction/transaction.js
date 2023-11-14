@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../DROPDOWN/Navbar";
 import "./transaction.css";
+import { useNavigate } from "react-router-dom";
 
 const Transaction = () => {
   const [beneficiary, setBeneficiary] = useState([]);
   const [toAccountNo, setToAccountNo] = useState("");
   const [amount, setAmount] = useState(0);
+
+  const navigate = useNavigate();
 
   const handleAmountChange = (event) => {
     const a = event.target.value;
@@ -30,8 +33,10 @@ const Transaction = () => {
       .then((response) => {
         if (response.ok) {
           console.log("Transaction successful!");
+          navigate("/success"); // Fix: use navigate instead of navigator
         } else {
           console.log("Transaction failed!");
+          navigate("/fail"); // Fix: use navigate instead of navigator
         }
       })
       .catch((error) => {
@@ -40,6 +45,7 @@ const Transaction = () => {
       });
   };
 
+   
 
   const updateTransaction = () => {
     fetch("http://localhost:4000/updateTransaction/updates", { // Update the URL to match the route

@@ -28,7 +28,7 @@ const MainPage = ()=>{
                 <Link to = "/urTransactions"><h2>Check your transactions</h2></Link>
                 </div>
                 <div className="Box4">
-                <Link><h2>Check your balance</h2></Link>
+                <Link to ="/balance"><h2>Check your balance</h2></Link>
                 </div>
                 <div className="Box4">
                 <Link to="/transaction"><h2>Make transactions</h2></Link>

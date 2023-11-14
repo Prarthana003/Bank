@@ -1,0 +1,21 @@
+.fail-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #FF5733; /* Red-Orange */
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  .fail-container h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .fail-container p {
+    font-size: 1.5em;
+  }
+  

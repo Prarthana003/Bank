@@ -4,29 +4,25 @@ const cors = require("cors");
 
 const accno = require("./curr_account")
 
-const loanPaymentRouter = express.Router();
+const appLoan = express.Router();
 
-loanPaymentRouter.use(express.json());
-loanPaymentRouter.use(cors());
-loanPaymentRouter.post('/loanPayments', (req, res) => {
-    console.log("loan payments")
-    const acc= accno.value
-    const loanId = req.body.loanId
-    const amount = req.body.amount
-
+appLoan.use(express.json());
+appLoan.use(cors());
+appLoan.post('/loan', (req, res) => {
+    const account = accno.value
+    const amount = req.body.principal
+    const time = req.body.time
     const q = `
-      call loan_connect(?,?) ;
+    call apploan(?,?,?);
     `;
   
-
-    db.query(q, [amount,loanId], (err, result) => {
-      console.log(result)
+    db.query(q, [account,amount,time], (err, result) => {
       if (err) {
         console.error('Error executing MySQL query:', err);
         res.status(500).json({ error: 'Invalid credentials.' });
       } else {
         console.log("result ",result)
-        if (result[0]=== 1) {
+        if (result[0][0] === 1) {
           console.log("Transfer successful");
           res.send({ success: true });
         } else {
@@ -38,4 +34,4 @@ loanPaymentRouter.post('/loanPayments', (req, res) => {
   });
   
 
-module.exports = loanPaymentRouter;
+module.exports = appLoan;
