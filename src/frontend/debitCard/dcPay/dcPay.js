@@ -29,7 +29,7 @@ const DebitCard = () => {
 
     const toaccno = parseInt(to)
 
-    // Assuming you have a backend API endpoint to handle OTP sending
+
     try {
       const response = await fetch("http://localhost:4000/otp/send-otp", {
         method: "POST",
