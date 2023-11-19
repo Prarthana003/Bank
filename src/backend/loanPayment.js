@@ -15,7 +15,7 @@ loanPaymentRouter.post('/loanPayments', (req, res) => {
     const amount = req.body.amount
 
     const q = `
-      call loan_connect(?,?) ;
+      call loan_connect(?,?);
     `;
   
 

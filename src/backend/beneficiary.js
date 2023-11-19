@@ -24,13 +24,14 @@ beneficiaryRouter.post('/getBeneficiaries', (req, res) => {
   `;
 
   db.query(q, [acc], (err, result) => {
+    console.log(result)
     if (err) {
       console.error('Error executing MySQL query:', err);
       res.status(500).json({ error: 'Invalid credentials.' });
     } else {
       if (result.length === 0) {
         console.log("Not existing");
-        res.send({ accountno: -1 });
+      res.send([]);
       } else {
         res.send(result);
         console.log(result);

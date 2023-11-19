@@ -23,12 +23,19 @@ transactionRouter.post('/transactions', (req, res) => {
         res.status(500).json({ error: 'Invalid credentials.' });
       } else {
         console.log("result ",result)
-        if (result[0][0] === 1) {
+        const s = "TransferAmount("+from+", '"+to+"', "+amt+")"
+        console.log(s)
+        console.log("1- ",result[0][s])
+        console.log("2- ",result[s])
+        if (result[0][s] === 1) {
+          
           console.log("Transfer successful");
           res.send({ success: true });
+          
         } else {
           console.log("Transfer failed");
           res.send({ success: false });
+          
         }
       }
     });

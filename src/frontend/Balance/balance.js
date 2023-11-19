@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './balance.css';
-import { Navbar } from 'react-bootstrap';
+import Navbar2 from '../components/Navbar2/Navbar2';
+
 
 const Balance = () => {
   const [currentBalance, setCurrentBalance] = useState(0);
@@ -23,8 +24,11 @@ const Balance = () => {
   }, []);
 
   return (
+    <div>
+      <Navbar2/>
+      <div className="heading"><h1 className="t1">Your Balance</h1></div>
     <div className="balance-container">
-        {/* //<Navbar/> */}
+  
       <h2>Your Current Balance</h2>
       <table className="balance-table">
         <tbody>
@@ -38,6 +42,7 @@ const Balance = () => {
           </tr>
         </tbody>
       </table>
+    </div>
     </div>
   );
 };

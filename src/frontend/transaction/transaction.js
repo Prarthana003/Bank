@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../DROPDOWN/Navbar";
+import Navbar2 from "../components/Navbar2/Navbar2";
 import "./transaction.css";
 import { useNavigate } from "react-router-dom";
 
@@ -7,6 +7,8 @@ const Transaction = () => {
   const [beneficiary, setBeneficiary] = useState([]);
   const [toAccountNo, setToAccountNo] = useState("");
   const [amount, setAmount] = useState(0);
+  const[check,setcheck] = useState(0)
+  const type = "online"
 
   const navigate = useNavigate();
 
@@ -33,10 +35,10 @@ const Transaction = () => {
       .then((response) => {
         if (response.ok) {
           console.log("Transaction successful!");
-          navigate("/success"); // Fix: use navigate instead of navigator
+          
         } else {
           console.log("Transaction failed!");
-          navigate("/fail"); // Fix: use navigate instead of navigator
+          
         }
       })
       .catch((error) => {
@@ -53,13 +55,18 @@ const Transaction = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ from: 4, toaccountno: toAccountNo, amt: amount }),
+      body: JSON.stringify({ from: 4, toaccountno: toAccountNo, amt: amount ,type:type}),
     })
       .then((response) => {
-        if (response.ok) {
+        alert(response)
+        if (response) {
+          
           console.log("Transaction successful!");
+          alert("Your transaction was successful")
         } else {
+           console.log(response)
           console.log("Transaction failed!");
+          alert("Your transaction has failed!")
         }
       })
       .catch((error) => {
@@ -70,8 +77,17 @@ const Transaction = () => {
   }
 
   const submit=()=>{
-    handlePayClick()
-    updateTransaction()
+    if(amount<=0){
+      alert("invalid amount!")
+    }
+    else{
+      handlePayClick()
+    console.log("check -",check)
+      updateTransaction()
+    }
+    
+      //alert("successful")
+    
   }
 
   useEffect(() => {
@@ -88,33 +104,55 @@ const Transaction = () => {
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
+  const renderBeneficiaries=()=>{
+    console.log(beneficiary)
+    if(beneficiary["accountno"]==-1){
+      return(
+        <div>
+          <h2>You do not have any beneficiaries. Please add beneficiaries to make transctions</h2>
+        </div>
+      )
+    }
+    else{
+      return(
+        <div className="box2">
+        <label htmlFor="beneficiary">Beneficiary:</label>
+        {/* if(beneficiary.length==0){
+          <div>
+            <h1> You do not have an</h1>
+          </div> */}
+        
+        {beneficiary.map((item) => (
+          <div key={item.toAccountno}>
+            <input
+              type="radio"
+              id={`beneficiary_${item.toAccountno}`}
+              name="beneficiary"
+              value={item.toAccountno}
+              onChange={(e) => setToAccountNo(e.target.value)}
+            />
+            <label htmlFor={`beneficiary_${item.toAccountno}`}>
+              Name: {item.toname}&nbsp;&nbsp;&nbsp;Account: {item.toAccountno}
+            </label>
+          </div>
+        ))}
+      </div>
+      )
+    }
+  }
+
+
   return (
     <div>
-      <Navbar />
+      <Navbar2/>
       <div className="heading">
         <h1 className="t1">Transaction</h1>
       </div>
       <div className="box1">
         <div className="form">
           <form>
-            <div className="box2">
-              <label htmlFor="beneficiary">Beneficiary:</label>
-              {beneficiary.map((item) => (
-                <div key={item.toAccountno}>
-                  <input
-                    type="radio"
-                    id={`beneficiary_${item.toAccountno}`}
-                    name="beneficiary"
-                    value={item.toAccountno}
-                    onChange={(e) => setToAccountNo(e.target.value)}
-                  />
-                  <label htmlFor={`beneficiary_${item.toAccountno}`}>
-                    Name: {item.toname}&nbsp;&nbsp;&nbsp;Account: {item.toAccountno}
-                  </label>
-                </div>
-              ))}
-            </div>
-
+           
+          <div >{renderBeneficiaries()}</div>
             <label htmlFor="amount">Amount to be Paid:</label>
             <input
               type="text"

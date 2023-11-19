@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../../DROPDOWN/Navbar";
+import Navbar2 from "../../components/Navbar2/Navbar2";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import "./dcPay.css";
@@ -12,17 +12,25 @@ const DebitCard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:4000/getphno/getphno", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({}),
-    })
-      .then((response) => response.json())
-      .then((data) => setMailid(data))
-      .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+    const fetchEmail = async () => {
+        try {
+            console.log("getting email");
+            const response = await fetch('http://localhost:4000/mail/getMail');
+            const data = await response.json();
+        
+            if (data.length > 0) {
+                setMailid(data[0].email); // Assuming the response is an array with a single result
+            } else {
+                console.log("Email not found");
+            }
+        } catch (error) {
+            console.error('Error fetching email:', error);
+        }
+    };
+    
+    fetchEmail();
+}, []);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,6 +39,7 @@ const DebitCard = () => {
 
 
     try {
+      console.log('mailid ',mailid)
       const response = await fetch("http://localhost:4000/otp/send-otp", {
         method: "POST",
         headers: {
@@ -52,7 +61,7 @@ const DebitCard = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar2 />
       <div className="debit-card-form-container">
         <h2>Debit Card Payment</h2>
         <form onSubmit={handleSubmit}>

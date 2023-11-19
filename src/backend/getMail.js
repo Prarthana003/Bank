@@ -3,13 +3,13 @@ const cors = require("cors");
 const db = require('./db');
 const acc = require('./curr_account');
 
-const getPHno = express.Router();
+const getMail = express.Router();
 
-getPHno.use(express.json());
-getPHno.use(cors());
+getMail.use(express.json());
+getMail.use(cors());
 
-getPHno.post('/getphno', async (req, res) => {
-    console.log("in getphno")
+getMail.get('/getmail', async (req, res) => {
+    console.log("in getMail")
     const accountNumber = acc.value;
 
     const q = `select email from notification where accountNo = ?;`;
@@ -31,4 +31,4 @@ getPHno.post('/getphno', async (req, res) => {
       });
 });
 
-module.exports = getPHno;
+module.exports = getMail;

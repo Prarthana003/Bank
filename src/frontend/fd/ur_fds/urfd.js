@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../DROPDOWN/Navbar";
+import Navbar2 from "../../components/Navbar2/Navbar2";
 import FDHeader from "../../components/fd_header/fd_header";
 import "./urfd.css"
 
@@ -57,7 +57,7 @@ const UrFd = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar2 />
       <FDHeader />
       <div className="heading">
         <h1 className="t1">Your Fixed Deposits</h1>

@@ -18,7 +18,7 @@ const YourLoans = () => {
 
   // Define a function to render the loan data as a table
   const renderLoanTable = () => {
-    if (loanData.length === 0) {
+    if (loanData["accountno"] === -1) {
       return <p>No loans found for this user.</p>;
     }
 
@@ -32,7 +32,7 @@ const YourLoans = () => {
             <th>Account Number</th>
             <th>To Be Paid</th>
             <th>Principal</th>
-            <th>Loan Time</th>
+            <th>Loan time</th>
             <th>Time Left</th>
             <th>Time in Years</th>
           </tr>
@@ -41,7 +41,7 @@ const YourLoans = () => {
           {loanData.map((loan) => (
             <tr key={loan.loanId}>
               <td>{loan.loanId}</td>
-              <td>${loan.amount}</td>
+              <td>Rs{loan.amount}</td>
               <td>{loan.rate}%</td>
               <td>{loan.acc_no}</td>
               <td>Rs{loan.toBePaid}</td>

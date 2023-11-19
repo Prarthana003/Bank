@@ -22,3 +22,12 @@
     color: #2ecc71; /* Green color for positive balance, adjust as needed */
   }
   
+
+  .heading{
+    background-color: rgb(33, 33, 139);
+    padding: 3%;
+}
+
+.t1{
+    color:white;
+}

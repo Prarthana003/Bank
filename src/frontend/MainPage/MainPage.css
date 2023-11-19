@@ -1,6 +1,11 @@
+.box0{
+    background-color:  rgb(233, 233, 245);
+}
+
 .Box1{
     display: flex;
     align-items: center;
+    background-color: rgb(233, 233, 245);
 }
 
 .Box2{
@@ -9,13 +14,14 @@
     border-style: solid;
     border-radius: 20px;
     border-color: black;
-    margin: 4.5%;
+    margin: 3%;
     padding: 5%;
+    /* background-color: rgb(45, 45, 104); */
 }
 
 .Box3{
     align-items: center;
-    
+    background-color: rgb(233, 233, 245);
 }
 
 .Box4{
@@ -25,4 +31,10 @@
     border-color: black;
     margin: 2%;
     padding: 1%;
+    background-color: rgb(45, 45, 104);
+    
+}
+
+.ttt{
+    color: white;
 }

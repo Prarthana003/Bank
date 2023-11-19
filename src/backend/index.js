@@ -15,6 +15,7 @@ const dcPhno = require('./getphno.js')
 const verify = require('./verifyOtp.js')
 const balance = require('./balance.js')
 const applyLoan = require('./applyLoan.js')
+const mail = require('./getMail.js')
 
 
 
@@ -57,6 +58,7 @@ app.use('/otp',dcOtpRouter)
 app.use('/verifyOtp',verify)
 app.use('/balance',balance)
 app.use('/appLoan',applyLoan)
+app.use('/mail',mail)
 
 
 

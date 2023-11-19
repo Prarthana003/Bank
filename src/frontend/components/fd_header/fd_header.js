@@ -5,7 +5,7 @@ import './fd_header.css'
 const FDHeader=()=>{
     return(
         <div className="header">
-            <Link  to ="/fd_Page"><h2 className="t1">Create fd</h2></Link>
+            <Link  to ="/fdpage"><h2 className="t1">Create fd</h2></Link>
             <Link to="/urFD"><h2 className="t1">Your FDs</h2></Link>
 
             

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../DROPDOWN/Navbar";
+import Navbar2 from "../../components/Navbar2/Navbar2";
 import LoanHeader from "../../components/loanHeader/loanHeader";
 
 const MakePayment=()=>{
@@ -60,10 +60,12 @@ const update =()=>{
     .then((response)=>{
         if(response.ok){
             console.log("Successful update")
+            alert("Successful payment")
             setcheck(1)
         }
         else{
             console.log("failed to insert")
+            alert("Failed to pay!")
         }
     })
 }
@@ -80,7 +82,7 @@ const update =()=>{
 
     return(
         <div>
-            <Navbar/>
+            <Navbar2/>
             <LoanHeader/>
             <div className="form">
                 <form >

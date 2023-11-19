@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../../DROPDOWN/Navbar";
+import Navbar2 from "../../components/Navbar2/Navbar2";
 import LoanHeader from "../../components/loanHeader/loanHeader";
 import YourLoans from "../YourLoans/yourLoans";
 
@@ -7,7 +7,7 @@ import YourLoans from "../YourLoans/yourLoans";
 const LoanPage=()=>{
     return (
         <div>
-            <Navbar/>
+            <Navbar2/>
             <LoanHeader/>
             <YourLoans/>
 

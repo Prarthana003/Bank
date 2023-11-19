@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import Navbar from "../DROPDOWN/Navbar";
+import React, { useState,useEffect } from "react";
+import Navbar2 from "../components/Navbar2/Navbar2";
 import "./addBeneficiary.css"
+
 
 const AddBeneficiary=()=>{
 
     const [name,setName] = useState("")
     const [benacc,setBenAcc] = useState(0)
     const [benName,setBenName] = useState("")
+    const[beneficiaries,setBeneficiary] = useState([])
 
     const handleName=(event)=>{
         const n = event.target.value;
@@ -32,8 +34,32 @@ const AddBeneficiary=()=>{
         setBenName(benName)
     }
 
+
+    useEffect(() => {
+        // Fetch JSON data from the server (assuming beneficiary.js is the server)
+        fetch('http://localhost:4000/beneficiary/getBeneficiaries', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ acc: 4 }),
+        })
+          .then((response) => response.json())
+          .then((data) => setBeneficiary(data))
+          .catch((error) => console.error('Error fetching data:', error));
+      }, []);
+
     const handleSubmit = () => {
-        fetch("http://localhost:4000/addBen/addBeneficiary", { // Update the URL to match the route
+
+
+        const isBenAccNoPresent = beneficiaries.some(beneficiary => beneficiary.toAccountno === benacc);
+        console.log("check = ",isBenAccNoPresent)
+        console.log("benacc= ",benacc)
+        console.log(beneficiaries)
+
+        if(!isBenAccNoPresent)
+      {
+          fetch("http://localhost:4000/addBen/addBeneficiary", { // Update the URL to match the route
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -43,19 +69,24 @@ const AddBeneficiary=()=>{
         .then((response) => {
             if (response.ok) {
                 console.log("Successful insert!");
+                alert("Successfully added beneficiary!")
             } else {
                 console.log("Insert failed!");
+                alert("Oops!Something went wrong. Failed to add beneficary")
             }
         })
         .catch((error) => {
             console.error("Error: ", error);
+            alert("Oops!Something went wrong. Failed to add beneficary")
+            
         });
+    }
     }
     
 
     return(
         <div>
-            <Navbar/>
+            <Navbar2/>
             <div className="heading">
                 <h1 className="t1">Add beneficiary</h1>
             </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../DROPDOWN/Navbar";
+import Navbar2 from "../../components/Navbar2/Navbar2";
 import LoanHeader from "../../components/loanHeader/loanHeader";
 import "./applyLoan.css"; 
 import { useNavigate } from "react-router-dom";
@@ -73,7 +73,7 @@ const ApplyLoan = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar2 />
       <LoanHeader />
        
       <div className="loanForm">

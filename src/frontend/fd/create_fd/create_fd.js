@@ -22,13 +22,16 @@ const Create_fd = () => {
       .then((response) => {
         if (response.ok) {
           console.log("Transaction successful!");
+          alert("Successfully created fd!")
         } else {
           console.log("Transaction failed!");
+          alert("Failed to create FD! Please try again")
         }
       })
       .catch((error) => {
         // Handle network errors here
         console.error("Error: ", error);
+        alert("Failed to create FD! Please try again")
       });
     
   }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../DROPDOWN/Navbar";
+import Navbar2 from "../components/Navbar2/Navbar2";
 import "./UrTransactions.css"
 
 const Transactions = () => {
@@ -39,12 +39,12 @@ const Transactions = () => {
           {transactionData.map((transaction) => (
             <tr key={transaction.transaction_id}>
               <td>{transaction.transaction_id}</td>
-              <td>${transaction.amount}</td>
+              <td>Rs{transaction.amount}</td>
               <td>{transaction.toAccNo}</td>
               <td>{transaction.type}</td>
               <td>{transaction.timestamp}</td>
               <td>{transaction.fromAcc}</td>
-              <td>{transaction.tdate}</td>
+              <td>{transaction.tdate.slice(0,10)}</td>
             </tr>
           ))}
         </tbody>
@@ -54,7 +54,7 @@ const Transactions = () => {
 
   return (
     <div>
-        <Navbar/>
+        <Navbar2/>
       <div className="heading"><h1 className="t1">Your Transactions</h1></div>
       <div className="transaction-table-container">
         {renderTransactionTable()}
