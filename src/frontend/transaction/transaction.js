@@ -55,7 +55,7 @@ const Transaction = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ from: 4, toaccountno: toAccountNo, amt: amount ,type:type}),
+      body: JSON.stringify({ from: 4, toaccountno: toAccountNo, amt: amount ,type:"online"}),
     })
       .then((response) => {
         alert(response)

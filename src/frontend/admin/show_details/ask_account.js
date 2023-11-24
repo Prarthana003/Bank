@@ -11,6 +11,26 @@ const Ask_account = () => {
        setAccount(e.target.value);
        console.log(e.target.value);
     }
+
+
+    const handlerdelAcc = () => {
+       
+ 
+      fetch("http://localhost:4000/del/delete_account", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ "Account":account})
+        
+      })
+        .then((response) => response.json())
+        .catch((error) => console.error("Error fetching data:", error));
+      }
+
+
+
+
     const handleraccount = () => {
        
  
@@ -189,6 +209,9 @@ const renderAccountTable = () => {
         <button class="search"style={{ padding:'10px'}} onClick={handleraccount}>Search </button>
         <button class="search"style={{ padding:'10px'}} onClick={handleraccount1}>Loans </button>
         <button class="search"style={{ padding:'10px'}} onClick={handleraccount2}>Fixed Deposit </button>
+        <button class="search"style={{ padding:'10px'}} onClick={handlerdelAcc}>Delete Account </button>
+
+        
         </div>
       </div>
       <div className="transaction-table-container">

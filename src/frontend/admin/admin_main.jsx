@@ -10,6 +10,9 @@ import './admin_main.css'
 
 
 
+
+
+
 const Admin_main = () => {
   // const location = useLocation();
   // const { data } = location.state || {};
@@ -18,6 +21,13 @@ const Admin_main = () => {
   const [password, setPassword] = useState('');
   const [jsondata,setjsondata]=useState([]);
   const navigate = useNavigate();
+  
+
+  const Bonus =  (e,req,res) => {
+    e.preventDefault();
+    navigate("/bonus");
+  
+  }
   
   
     const handleSubmit = async (e,req,res) => {
@@ -109,7 +119,7 @@ const Admin_main = () => {
           <br></br><br></br>
           <button class="b1" onClick={notify}> Notifications</button>
           <br></br><br></br>
-           <button class="b1" onClick={recruit}> Recruit </button>
+           <button class="b1" onClick={Bonus}>Enable Bonus </button>
           <br></br><br></br> 
           <button class="b1" onClick={createaccount}> Create Account </button>
           <br></br><br></br> 

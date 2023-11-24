@@ -13,15 +13,19 @@ updateTransactionRouter.post("/updates", (req, res) => {
   const toaccno = req.body.toaccountno;
   const amount = req.body.amt;
   const flag = req.body.flag;
+  const type = req.body.type;
   console.log("flag ",flag)
 
-  var  q =``;
-  if(flag == 1)
-    var q = `INSERT INTO transaction (amount, toAccno, type, timestamp, fromAcc, tdate) VALUES (?, ?,"debit", CURTIME(), ?, CURDATE())`;
-  else
-    var q = `INSERT INTO transaction (amount, toAccno, type, timestamp, fromAcc, tdate) VALUES (?, ?,"online", CURTIME(), ?, CURDATE())`;
+  // var  q =``;
+  // if(flag == 1)
+  //   var q = `INSERT INTO transaction (amount, toAccno, type, timestamp, fromAcc, tdate) VALUES (?, ?,"debit", CURTIME(), ?, CURDATE())`;
+  // else
+  //   var q = `INSERT INTO transaction (amount, toAccno, type, timestamp, fromAcc, tdate) VALUES (?, ?,"online", CURTIME(), ?, CURDATE())`;
 
-  db.query(q, [amount, toaccno, accno], (err, result) => {
+  const q = `INSERT INTO transaction (amount, toAccno, type, timestamp, fromAcc, tdate) VALUES (?, ?,?, CURTIME(), ?, CURDATE())`;
+
+
+  db.query(q, [amount, toaccno,type, accno], (err, result) => {
     if (err) {
       console.error('Error executing MySQL query:', err);
       res.status(500).json({ error: 'An error occurred while inserting data.' });

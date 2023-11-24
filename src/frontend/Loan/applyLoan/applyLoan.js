@@ -92,7 +92,7 @@ const ApplyLoan = () => {
           </div>
 
           <div className="formGroup">
-            <label className="label" htmlFor="time">Time (in months):</label>
+            <label className="label" htmlFor="time">Time (in years):</label>
             <input type="text" 
             onChange={handleTime}
             id="time" name="time" className="inputField" required />

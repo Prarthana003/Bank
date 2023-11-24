@@ -16,13 +16,23 @@ const verify = require('./verifyOtp.js')
 const balance = require('./balance.js')
 const applyLoan = require('./applyLoan.js')
 const mail = require('./getMail.js')
+const transactionstats = require('./stats/transaction.js')
+const Delete_Account=require("./delete_acc.js");
+const del_acc = require("./delete_acc.js");
 
+const bodyParser = require('body-parser');
+const updateBonus=require("./updateBonus.js");
+
+const nodemailer = require('nodemailer')
 
 
 const cors = require('cors');
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+app.use(bodyParser.json());
+app.use('/updateBonus',updateBonus);
 
 
 var curr_account = require("./curr_account")
@@ -59,7 +69,17 @@ app.use('/verifyOtp',verify)
 app.use('/balance',balance)
 app.use('/appLoan',applyLoan)
 app.use('/mail',mail)
+app.use('/stats',transactionstats)
+app.use('/del',del_acc)
 
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'pes1202100596@pesu.pes.edu', // Replace with your Gmail email address
+    pass: 'jjdr ufvc szko wtsq', // Replace with your application-specific password
+  },
+});
 
 
 
@@ -71,6 +91,35 @@ app.post("/",(req,res)=>{
 app.get("/next",(req,res)=>{
     res.send("IN NEXT PAGE");
 })
+
+
+app.post("/top3",(req,res)=>{
+
+
+  // res.send("HERE>>GET");
+  const q="select * from account where Current_Outstanding order by Current_Outstanding desc limit 3"
+      // const q="select * from register_login natural join account";
+  // const q="select * from login";
+  
+  // const q = 'SELECT * FROM login';
+
+db.query(q, (err, result) => {
+if (err) {
+  console.error('Error executing MySQL query:', err);
+  res.status(500).json({ error: 'Invalid credentials.' });
+}
+console.log(result); // Logging the query result to the console
+if (result.length==0){
+  console.log("Not existing")
+  res.json(result);
+}
+else
+res.json(result); }
+
+)// 
+})
+
+
 app.post("/logged_in", (req,res)=>{
     // console.log(req);
     console.log("YAYY!");
@@ -225,7 +274,7 @@ app.post('/create_account', (req, res) => {
                             console.log(Email_Address);
                             console.log(typeof(Email_Address));
                           const mailOptions = {
-                            from: 'pri2019senthil@gmail.com',
+                            from: 'pes1202100596@pesu.pes.edu',
                             to: Email_Address,
                             subject:"Account Creation with Eminent Bank",
                             text:"You have successfully registered in Eminent Bank. Your Account No is "+acc_id+".Debit Card No is "+debit_id+ "\\n.Login credentials :Username and password are your account number itself."
@@ -457,7 +506,7 @@ app.post("/top3",(req,res)=>{
 
 
   // res.send("HERE>>GET");
-  const q="select * from account where Current_Outstanding having max(Current_Outstanding)"
+  const q="select * from account where Current_Outstanding order by Current_Outstanding desc limit 3"
       // const q="select * from register_login natural join account";
   // const q="select * from login";
   

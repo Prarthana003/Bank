@@ -14,10 +14,11 @@ transactionRouter.post('/transactions', (req, res) => {
   const q = `
     SELECT * FROM TRANSACTION
     WHERE FROMACC = ?
-    ORDER BY TDATE DESC; 
+    or TOACCNO = ?
+    ORDER BY TDATE DESC,timestamp desc; 
   `;
 
-  db.query(q, [accountNo], (err, result) => {
+  db.query(q, [accountNo,accountNo], (err, result) => {
     if (err) {
       console.error('Error executing MySQL query:', err);
       res.status(500).json({ error: 'Internal Server Error' });

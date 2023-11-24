@@ -36,6 +36,7 @@ const MakePayment=()=>{
               console.log("successful insert");
             } else {
               console.log("failed to insert!");
+              alert("invalid amount!")
             }
             return response.json(); // Add this line to parse the JSON response
           })
@@ -45,9 +46,12 @@ const MakePayment=()=>{
           })
           .catch((error) => {
             console.error("Error during fetch:", error);
+            alert("error!")
           });
       };
-      
+   
+
+
 
 const update =()=>{
     fetch("http://localhost:4000/updateLoan/payloan",{
@@ -71,10 +75,8 @@ const update =()=>{
 }
 
     const handleSubmit=()=>{
-        // console.log("in handle submit")
-        // update()
-        // console.log("finished update")
-        // if(check ===1)
+        
+         
         handlePay()
 
     }

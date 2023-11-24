@@ -33,6 +33,8 @@ import Top3 from './frontend/admin/show_details/top3';
 import AdminLoginComponent from './frontend/admin/adminlogin/adminlogin';
 import Success from './frontend/success/success';
 import Fail from './frontend/fail/fail';
+import TransactionChart from './frontend/admin/stats/transaction/transaction';
+import Bonus from './frontend/admin/show_details/bonus';
 
 
 
@@ -74,7 +76,8 @@ const App = () => {
         <Route exact path ="/showdetails" element ={<ShowDetails/>} />
         <Route exact path ="/unpaid" element ={<Unpaid/>} />
         <Route exact path ="/top3" element ={<Top3/>} />
-        
+        <Route exact path ="/transactionstats" element ={<TransactionChart/>} />
+        <Route exact path ="/bonus" element ={<Bonus/>} />
     </Routes>
     </div>
   );

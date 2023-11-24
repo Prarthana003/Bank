@@ -21,7 +21,7 @@ const OTPForm = ({ onSubmit }) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ from: 4, toaccountno: toacc, amt: amount }),
+      body: JSON.stringify({ from: 4, toaccountno: toacc, amt: amount,type:"debit" }),
     })
       .then((response) => {
         if (response.ok) {
