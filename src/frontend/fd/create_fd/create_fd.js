@@ -17,7 +17,7 @@ const Create_fd = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({  toaccountno: 4, amt: a }),
+      body: JSON.stringify({  toaccountno: 4, amt: a ,type: "fd"}),
     })
       .then((response) => {
         if (response.ok) {

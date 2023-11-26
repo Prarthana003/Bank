@@ -12,8 +12,8 @@ dcOtpRouter.use(cors());
 const emailConfig = {
   service: 'gmail',
   auth: {
-    user: '', // Replace with your Gmail email address
-    pass: '', // Replace with your application-specific password
+    user: 'pes1202100596@pesu.pes.edu', // Replace with your Gmail email address
+    pass: 'jjdr ufvc szko wtsq', // Replace with your application-specific password
   },
 };
 
@@ -38,7 +38,7 @@ console.log(tomail)
 
   // Send the OTP via email using Nodemailer
   const mailOptions = {
-    from: '',
+    from: 'pes1202100596@pesu.pes.edu',
     to: tomail,
     subject: 'OTP for Payment',
     text: `Your OTP for the payment is ${otp}.`,

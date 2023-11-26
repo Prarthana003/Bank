@@ -10,8 +10,8 @@ app.use(bodyParser.json());
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: '',  // Your email address
-    pass: ''   // Your email password or an app-specific password
+    user: 'pes1202100596@pesu.pes.edu',  // Your email address
+    pass: 'jjdr ufvc szko wtsq'   // Your email password or an app-specific password
   }
 });
 
@@ -19,7 +19,7 @@ app.post('/send-email', (req, res) => {
   const { recipientEmail, subject, message } = req.body;
 
   const mailOptions = {
-    from: '',
+    from: 'pes1202100596@pesu.pes.edu',
     to: 'pes1202102112@pesu.pes.edu',
     subject: subject,
     text:message
